@@ -1,55 +1,102 @@
-  @import "tailwindcss";
+@import "tailwindcss";
 
-  :root {
-    --color-primary-orange: hsl(26, 100%, 55%);
-    --color-primary-pale: hsl(25, 100%, 94%);
+:root {
+  --color-primary-orange: hsl(26, 100%, 55%);
+  --color-secondary-orange: hsl(26, 92%, 50%);
+  --color-primary-pale: hsl(25, 100%, 94%);
 
-    --color-neutral-very-dark-blue: hsl(220, 13%, 13%);
-    --color-neutral-dark-grayish-blue: hsl(219, 9%, 45%);
-    --color-neutral-grayish-blue: hsl(220, 14%, 75%);
-    --color-neutral-light-grayish-blue: hsl(223, 64%, 98%);
-    --color-neutral-white: hsl(0, 0%, 100%);
-    --color-neutral-black: hsl(0, 0%, 0%);
+  --color-neutral-very-dark-blue: hsl(220, 13%, 13%);
+  --color-neutral-dark-grayish-blue: hsl(219, 9%, 45%);
+  --color-neutral-grayish-blue: hsl(220, 14%, 75%);
+  --color-neutral-light-grayish-blue: hsl(223, 64%, 98%);
+  --color-neutral-white: hsl(0, 0%, 100%);
+  --color-neutral-black: hsl(0, 0%, 0%);
 
-    --font-family-base: 'Kumbh Sans', sans-serif;
-    --font-size-base: 16px;
+  --font-family-base: 'Kumbh Sans', sans-serif;
+  --font-size-base: 16px;
+  --font-weight-one: 400px;
+  --font-weight-two: 700px;
 
-    --breakpoint-mobile: 375px;
-    --breakpoint-desktop: 1440px;
-  }
+  --breakpoint-mobile: 375px;
+  --breakpoint-desktop: 1440px;
+}
 
-  body {
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-base);
-    color: var(--color-neutral-very-dark-blue);
-  }
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-one);
+  color: var(--color-neutral-very-dark-blue);
+}
 
-  a {
-    color: var(--color-neutral-dark-grayish-blue);
-  }
+a {
+  color: var(--color-neutral-dark-grayish-blue);
+}
 
-  a:hover {
-    color: var(--color-primary-orange);
-  }
+a:hover {
+  font-weight: var(--font-weight-two);
+  color: var(--color-neutral-black);
+  border-color: var(--color-primary-orange);
+}
 
-  .badge {
-    background-color: var(--color-primary-orange);
-    color: white;
-    font-weight: bold;
-    font-size: 10px;
-    border-radius: 9999px;
-    padding: 0 4px;
-    position: absolute;
-    top: -8px;
-    right: -4px;
-  }
+.badge {
+  background-color: var(--color-primary-orange);
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  border-radius: 9999px;
+  padding: 0 4px;
+  position: absolute;
+  top: -8px;
+  right: -4px;
+}
 
-  .avatar {
-    border: 2px solid transparent;
-    border-radius: 9999px;
-    transition: border 0.3s ease;
-  }
+.avatar {
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  transition: border 0.5s ease;
+}
 
-  .avatar:hover {
-    border-color: var(--color-primary-orange);
-  }
+.avatar:hover {
+  border-color: var(--color-primary-orange);
+}
+
+.product-brand {
+  color: var(--color-neutral-dark-grayish-blue);
+  letter-spacing: 1.5px;
+}
+
+.description {
+  color: var(--color-neutral-dark-grayish-blue);
+}
+
+.promo {
+  color: var(--color-neutral-dark-grayish-blue);
+}
+
+.quantity {
+  background-color: var(--color-neutral-light-grayish-blue);
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--color-primary-orange);
+  color: var(--color-neutral-black);
+  padding: 12px 50px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.cart:hover {
+  background-color: var(--color-secondary-orange);
+}
+
+.cart-icon {
+  height: 16px;
+  width: 16px;
+}
+

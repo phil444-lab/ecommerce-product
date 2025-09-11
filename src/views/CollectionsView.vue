@@ -1,7 +1,7 @@
 <template>
-  <AppHeader />
+  <ShoesDetail />
 </template>
 
 <script setup>
-  import AppHeader from "@/components/AppHeader.vue";
+  import ShoesDetail from "@/components/ShoesDetail.vue";
 </script>
