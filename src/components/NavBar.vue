@@ -1,8 +1,23 @@
 <script setup>
+  import { ref } from "vue"
   import { RouterLink } from "vue-router"
+  import { useCartStore } from "@/stores/cart"
   import logo from "@/assets/logo.svg"
   import avatar from "@/assets/image-avatar.png"
   import cart from "@/assets/icon-cart.svg"
+  import menu from "@/assets/icon-menu.svg"
+
+  import MobileMenu from "@/components/MobileMenu.vue"
+  import Dropdown from "@/components/DropDownMenu.vue"
+
+  const cartStore = useCartStore()
+
+  const isDropdownOpen = ref(false)
+  const toggleDropdown = () => {
+    isDropdownOpen.value = !isDropdownOpen.value
+  }
+
+  const isMobileMenuOpen = ref(false)
 </script>
 
 <template>
@@ -10,6 +25,11 @@
     <div class="px-38">
       <div class="flex items-center justify-between border-b-3 border-gray-100">
         <div class="flex items-center gap-12">
+
+          <button class="md:hidden" @click="isMobileMenuOpen = true">
+            <img :src="menu" alt="Menu" class="h-6 w-6" />
+          </button>
+
           <img :src="logo" alt="Logo" class="h-5 w-36" />
 
           <nav class="flex gap-8">
@@ -50,15 +70,21 @@
           </nav>
         </div>
 
-        <div class="flex items-center gap-8 cursor-pointer">
-          <div class="relative">
-            <img :src="cart" alt="Cart" class="h-4 w-5" />
-            <span class="badge">3</span>
+        <div class="flex items-center gap-8 cursor-pointer relative">
+          <div class="relative" @click="toggleDropdown">
+            <img :src="cart" alt="Cart" class="h-5 w-5" />
+            <span v-if="cartStore.count > 0" class="badge">
+              {{ cartStore.count }}
+            </span>
           </div>
+
+          <Dropdown v-if="isDropdownOpen" @close="isDropdownOpen = false" />
 
           <img :src="avatar" alt="Avatar" class="h-12 w-12 rounded-full avatar" />
         </div>
       </div>
     </div>
+
+    <MobileMenu :isOpen="isMobileMenuOpen" @close="isMobileMenuOpen = false" />
   </header>
 </template>

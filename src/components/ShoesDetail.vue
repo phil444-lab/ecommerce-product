@@ -1,5 +1,6 @@
 <script setup>
   import { ref } from "vue"
+  import { useCartStore } from "@/stores/cart"
   import img1 from "@/assets/image-product-1.jpg"
   import img2 from "@/assets/image-product-2.jpg"
   import img3 from "@/assets/image-product-3.jpg"
@@ -9,10 +10,22 @@
   import plus from "@/assets/icon-plus.svg"
   import minus from "@/assets/icon-minus.svg"
 
+  import ProductLightbox from "@/components/ProductLightbox.vue"
+
+  const cartStore = useCartStore()
+
   const images = [img1, img2, img3, img4]
   const selectedImage = ref(images[0])
-  const selectImage = (image) => {
+  const currentIndex = ref(0)
+
+  const selectImage = (image, index) => {
     selectedImage.value = image
+    currentIndex.value = index
+  }
+
+  const isLightboxOpen = ref(false)
+  const openLightbox = () => {
+    isLightboxOpen.value = true
   }
 
   const quantity = ref(0)
@@ -23,24 +36,31 @@
     if (quantity.value > 0) quantity.value--
   }
 
+  const addToCart = () => {
+    if (quantity.value > 0) {
+      cartStore.addToCart(quantity.value)
+      quantity.value = 0
+    }
+  }
+
 </script>
 
 <template>
   <div class="flex justify-center items-start gap-30 p-20">
     <div class="flex flex-col items-center">
-      <div class="mb-6">
+      <div class="mb-6 cursor-pointer"  @click="openLightbox">
         <img :src="selectedImage" alt="Image principale" class="h-98 w-auto rounded-xl shadow-lg object-cover" />
       </div>
 
       <div class="flex gap-6">
-        <div
-          v-for="(image, index) in images" :key="index" class="relative border-2 rounded-lg"
+        <div v-for="(image, index) in images" :key="index" class="relative cursor-pointer border-2 rounded-lg overflow-hidden group"
           :class="selectedImage === image ? 'border-orange-500' : 'border-transparent'"
-          @click="selectImage(image)"
+          @click="selectImage(image, index)"
         >
-          <img :src="image" alt="Miniature" class="h-20 w-20 rounded"
-            :class="selectedImage === image ? 'opacity-30' : 'opacity-100'"
-          />
+          <img :src="image" alt="Miniature" class="h-20 w-20 rounded" />
+
+          <div v-if="index === currentIndex" class="absolute inset-0 bg-white/60"></div>
+          <div v-else class="absolute inset-0 bg-white/0 group-hover:bg-white/60 transition"></div>
         </div>
       </div>
     </div>
@@ -76,7 +96,7 @@
           </button>
         </div>
 
-        <button class="cart text-sm">
+        <button class="cart text-sm" @click="addToCart">
           <img :src="cartBlack" alt="Cart" class="cart-icon" />
           Add to cart
         </button>
@@ -84,4 +104,5 @@
     </div>
   </div>
 
+  <ProductLightbox v-model="isLightboxOpen" :images="images" :startIndex="currentIndex" />
 </template>

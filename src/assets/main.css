@@ -100,3 +100,12 @@ a:hover {
   width: 16px;
 }
 
+.dropdown-btn{
+  background-color: var(--color-primary-orange);
+  color: var(--color-neutral-black);
+}
+
+.dropdown-btn:hover {
+  background-color: var(--color-secondary-orange);
+}
+
