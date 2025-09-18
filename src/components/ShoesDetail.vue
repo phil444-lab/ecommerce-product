@@ -37,7 +37,9 @@
 
   const isLightboxOpen = ref(false)
   const openLightbox = () => {
-    isLightboxOpen.value = true
+    if (window.innerWidth > 425) {
+      isLightboxOpen.value = true
+    }
   }
 
   const quantity = ref(0)
@@ -118,6 +120,6 @@
       </div>
     </div>
 
-    <ProductLightbox v-model="isLightboxOpen" :images="images" :startIndex="currentIndex" />
+    <ProductLightbox v-if="isLightboxOpen" v-model="isLightboxOpen" :images="images" :startIndex="currentIndex" />
   </div>
 </template>
