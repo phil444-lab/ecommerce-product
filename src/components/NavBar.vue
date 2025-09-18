@@ -21,18 +21,18 @@
 </script>
 
 <template>
-  <header>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white">
     <div class="px-38">
       <div class="flex items-center justify-between border-b-3 border-gray-100">
         <div class="flex items-center gap-12">
 
           <button class="md:hidden" @click="isMobileMenuOpen = true">
-            <img :src="menu" alt="Menu" class="h-6 w-6" />
+            <img :src="menu" alt="Menu" />
           </button>
 
           <img :src="logo" alt="Logo" class="h-5 w-36" />
 
-          <nav class="flex gap-8">
+          <nav class="hidden md:flex gap-8">
             <RouterLink to="/"
               class="py-12 border-b-4"
               :class="$route.path === '/' ? 'border-orange-500' : 'border-transparent'"

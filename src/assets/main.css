@@ -109,3 +109,40 @@ a:hover {
   background-color: var(--color-secondary-orange);
 }
 
+/* responsivité */
+@media (max-width: 375px) {
+  .px-38 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .gap-12 {
+    gap: 1rem;
+  }
+
+  .gap-8 {
+    gap: 1rem;
+  }
+
+  .border-b-3 {
+    border-bottom-width: 0;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 1023px) {
+  .px-38 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .border-b-3 {
+    border-bottom-width: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .px-38 {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
+}
